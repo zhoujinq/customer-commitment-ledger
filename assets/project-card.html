@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>客户承诺管理工作台｜项目介绍卡片</title>
+<style>
+@font-face{font-family:"Noto Sans SC";src:url("fonts/noto-sans-sc-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Sans SC";src:url("fonts/noto-sans-sc-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Sans SC";src:url("fonts/noto-sans-sc-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Serif SC";src:url("fonts/noto-serif-sc-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Serif SC";src:url("fonts/noto-serif-sc-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/ibm-plex-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/ibm-plex-mono-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+:root{--paper:#efede5;--surface:#faf8f2;--ink:#292d29;--ink2:#50564f;--muted:#7d8178;--rule:#cec9bb;--machine:#18211d;--machine2:#223029;--machine-ink:#e4e9e2;--machine-muted:#9fb0a5;--signal:#c2401e;--signal-soft:#f0a58b;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",sans-serif;--mono:"IBM Plex Mono",monospace}
+*{box-sizing:border-box}
+html,body{margin:0;width:1280px;height:640px;overflow:hidden;background:var(--paper)}
+body{font-family:var(--sans);color:var(--ink)}
+.card{position:relative;width:1280px;height:640px;padding:34px 48px 28px;overflow:hidden;background:radial-gradient(circle at 12% 8%,rgba(255,255,255,.72),transparent 33%),radial-gradient(circle at 88% 80%,rgba(194,64,30,.045),transparent 32%),repeating-linear-gradient(0deg,rgba(63,60,48,.014) 0,rgba(63,60,48,.014) 1px,transparent 1px,transparent 4px),var(--paper)}
+.card:before{content:"";position:absolute;left:0;top:0;width:7px;height:100%;background:var(--signal)}
+.header{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;height:38px}
+.brand{display:flex;align-items:center;gap:13px}
+.seal{display:grid;place-items:center;width:36px;height:36px;border:1.5px solid var(--signal);color:var(--signal);font-family:var(--serif);font-size:22px;font-weight:700;transform:rotate(-2deg)}
+.brand-copy{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--ink2)}
+.brand-copy b{display:block;margin-bottom:3px;color:var(--ink);font-weight:500}
+.header-badge{padding:7px 11px;border:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--muted);background:rgba(250,248,242,.48)}
+.main{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;gap:42px;margin-top:28px}
+.story{padding-top:3px}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--signal)}
+h1{margin:12px 0 13px;font-family:var(--serif);font-size:58px;font-weight:700;line-height:1.12;letter-spacing:-.035em}
+h1 span{display:block}
+.subtitle{max-width:560px;margin:0;color:var(--ink2);font-size:17px;line-height:1.75;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.step{padding:13px 10px 12px 0;border-right:1px solid var(--rule)}
+.step:not(:first-child){padding-left:12px}
+.step:last-child{border-right:0}
+.step-no{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--signal)}
+.step-title{margin-top:5px;font-family:var(--serif);font-size:19px;font-weight:600}
+.step-desc{margin-top:4px;color:var(--muted);font-size:10.5px;line-height:1.5}
+.rules{display:flex;align-items:center;gap:9px;margin-top:16px;color:var(--ink2);font-size:11px;line-height:1.6}
+.rules i{width:7px;height:7px;border-radius:50%;background:#3b745b;box-shadow:0 0 0 4px rgba(59,116,91,.1);flex:none}
+.preview{height:418px;padding:22px 23px 19px;background:var(--machine);color:var(--machine-ink);box-shadow:0 18px 42px rgba(24,33,29,.16);position:relative;overflow:hidden}
+.preview:after{content:"";position:absolute;right:-70px;top:-110px;width:260px;height:260px;border:1px solid rgba(228,233,226,.07);border-radius:50%;box-shadow:0 0 0 38px rgba(228,233,226,.022),0 0 0 78px rgba(228,233,226,.015)}
+.preview-head{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--machine-muted)}
+.live{display:inline-flex;align-items:center;gap:6px;color:#c3d4c8}
+.live:before{content:"";width:6px;height:6px;border-radius:50%;background:#7fbf9a}
+.metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;padding-bottom:18px;border-bottom:1px solid #39463f}
+.metric{padding-left:13px;border-left:1px solid #39463f}
+.metric:first-child{padding-left:0;border-left:0}
+.metric-value{font-family:var(--serif);font-size:32px;font-weight:600;line-height:1}
+.metric-label{margin-top:6px;color:var(--machine-muted);font-size:10px;letter-spacing:.08em}
+.focus{position:relative;z-index:1;display:flex;justify-content:space-between;margin:17px 0 10px;font-family:var(--mono);font-size:9px;letter-spacing:.11em;color:var(--signal-soft)}
+.task{position:relative;z-index:1;margin-top:9px;padding:12px 13px 11px;border-left:2px solid var(--signal);background:var(--machine2)}
+.task-title{font-size:14px;font-weight:500;letter-spacing:.01em}
+.task-meta{display:flex;justify-content:space-between;margin-top:7px;color:var(--machine-muted);font-family:var(--mono);font-size:9.5px}
+.task-meta b{color:var(--signal-soft);font-weight:500}
+.preview-foot{position:absolute;z-index:1;left:23px;right:23px;bottom:17px;display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid #39463f;color:var(--machine-muted);font-family:var(--mono);font-size:8.8px;letter-spacing:.04em}
+.footer{position:absolute;z-index:1;left:48px;right:48px;bottom:24px;display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--muted)}
+.footer strong{color:var(--ink2);font-weight:500}
+.privacy{display:inline-flex;align-items:center;gap:7px}
+.privacy:before{content:"";width:6px;height:6px;border-radius:50%;background:#3b745b}
+</style>
+</head>
+<body>
+<main class="card" aria-label="客户承诺管理工作台项目介绍卡片">
+  <header class="header">
+    <div class="brand">
+      <div class="seal">承</div>
+      <div class="brand-copy"><b>ASTRIBOT · SALES OPERATIONS</b>CUSTOMER COMMITMENT LEDGER</div>
+    </div>
+    <div class="header-badge">INTERACTIVE WORKBENCH · V1.0</div>
+  </header>
+  <div class="main">
+    <section class="story">
+      <div class="kicker">FROM CONVERSATIONS TO ACCOUNTABLE ACTIONS</div>
+      <h1><span>客户承诺管理</span><span>工作台</span></h1>
+      <p class="subtitle">把邮件与会议里的承诺，变成可追踪、可提醒、可复盘的行动。每一条都有期限、责任边界与出处原话。</p>
+      <div class="steps">
+        <div class="step"><div class="step-no">01 / CAPTURE</div><div class="step-title">捕捉</div><div class="step-desc">邮件与会议<br>先落成数据行</div></div>
+        <div class="step"><div class="step-no">02 / DISTILL</div><div class="step-title">提炼</div><div class="step-desc">承诺带期限<br>承诺方与出处</div></div>
+        <div class="step"><div class="step-no">03 / TRACK</div><div class="step-title">追踪</div><div class="step-desc">每天聚焦<br>最要紧的事项</div></div>
+        <div class="step"><div class="step-no">04 / REVIEW</div><div class="step-title">复盘</div><div class="step-desc">每周看见<br>兑现与积压</div></div>
+      </div>
+      <div class="rules"><i></i><span>机器只写机器字段 · 待裁决必须人工确认 · 失败即停，重试不超过 2 次</span></div>
+    </section>
+    <section class="preview" aria-label="工作台数据快照示意">
+      <div class="preview-head"><span>COMMITMENT LEDGER / SNAPSHOT</span><span class="live">STATIC DEMO</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-value">6</div><div class="metric-label">客户</div></div>
+        <div class="metric"><div class="metric-value">8</div><div class="metric-label">承诺</div></div>
+        <div class="metric"><div class="metric-value">47</div><div class="metric-label">会议</div></div>
+        <div class="metric"><div class="metric-value">17</div><div class="metric-label">触点</div></div>
+      </div>
+      <div class="focus"><span>今日焦点 / TOP PRIORITIES</span><span>2026-11-18</span></div>
+      <div class="task"><div class="task-title">合同违约金条款更新</div><div class="task-meta"><span>逾期 <b>76 天</b></span><span>今日分 243</span></div></div>
+      <div class="task"><div class="task-title">海外批次到货跟踪</div><div class="task-meta"><span>逾期 <b>20 天</b></span><span>今日分 75</span></div></div>
+      <div class="preview-foot"><span>08:30 聚焦 TOP 2</span><span>静态演示 · 不发送消息</span></div>
+    </section>
+  </div>
+  <footer class="footer">
+    <strong>单文件 HTML　/　本地字体　/　无需构建　/　可离线打开</strong>
+    <span class="privacy">假名演示数据 · 2026-11-18 快照</span>
+  </footer>
+</main>
+</body>
+</html>
