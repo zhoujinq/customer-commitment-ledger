@@ -1,106 +1,71 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas-width="1280" data-canvas-height="640" style="width:1280px;height:640px;">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>客户承诺管理工作台｜项目介绍卡片</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>销售助手-客户管理系统｜项目介绍卡片</title>
 <style>
+@font-face{font-family:"Maple Mono";src:url("fonts/maple-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Maple Mono";src:url("fonts/maple-bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:"Noto Sans SC";src:url("fonts/noto-sans-sc-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Noto Sans SC";src:url("fonts/noto-sans-sc-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:"Noto Sans SC";src:url("fonts/noto-sans-sc-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Noto Serif SC";src:url("fonts/noto-serif-sc-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"Noto Serif SC";src:url("fonts/noto-serif-sc-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("fonts/ibm-plex-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("fonts/ibm-plex-mono-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-:root{--paper:#efede5;--surface:#faf8f2;--ink:#292d29;--ink2:#50564f;--muted:#7d8178;--rule:#cec9bb;--machine:#18211d;--machine2:#223029;--machine-ink:#e4e9e2;--machine-muted:#9fb0a5;--signal:#c2401e;--signal-soft:#f0a58b;--serif:"Noto Serif SC",serif;--sans:"Noto Sans SC",sans-serif;--mono:"IBM Plex Mono",monospace}
+:root{--paper:#f7f3ea;--card:#fffdf8;--ink:#2b2418;--ink2:#4a4234;--muted:#6f6553;--line:#d9d0ba;--blue:#3350e6;--green:#2f7d4f;--orange:#b06219;--mono:"Maple Mono","Noto Sans SC",monospace}
 *{box-sizing:border-box}
-html,body{margin:0;width:1280px;height:640px;overflow:hidden;background:var(--paper)}
-body{font-family:var(--sans);color:var(--ink)}
-.card{position:relative;width:1280px;height:640px;padding:34px 48px 28px;overflow:hidden;background:radial-gradient(circle at 12% 8%,rgba(255,255,255,.72),transparent 33%),radial-gradient(circle at 88% 80%,rgba(194,64,30,.045),transparent 32%),repeating-linear-gradient(0deg,rgba(63,60,48,.014) 0,rgba(63,60,48,.014) 1px,transparent 1px,transparent 4px),var(--paper)}
-.card:before{content:"";position:absolute;left:0;top:0;width:7px;height:100%;background:var(--signal)}
-.header{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;height:38px}
-.brand{display:flex;align-items:center;gap:13px}
-.seal{display:grid;place-items:center;width:36px;height:36px;border:1.5px solid var(--signal);color:var(--signal);font-family:var(--serif);font-size:22px;font-weight:700;transform:rotate(-2deg)}
-.brand-copy{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--ink2)}
-.brand-copy b{display:block;margin-bottom:3px;color:var(--ink);font-weight:500}
-.header-badge{padding:7px 11px;border:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--muted);background:rgba(250,248,242,.48)}
-.main{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;gap:42px;margin-top:28px}
-.story{padding-top:3px}
-.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--signal)}
-h1{margin:12px 0 13px;font-family:var(--serif);font-size:58px;font-weight:700;line-height:1.12;letter-spacing:-.035em}
-h1 span{display:block}
-.subtitle{max-width:560px;margin:0;color:var(--ink2);font-size:17px;line-height:1.75;font-weight:400}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
-.step{padding:13px 10px 12px 0;border-right:1px solid var(--rule)}
-.step:not(:first-child){padding-left:12px}
-.step:last-child{border-right:0}
-.step-no{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--signal)}
-.step-title{margin-top:5px;font-family:var(--serif);font-size:19px;font-weight:600}
-.step-desc{margin-top:4px;color:var(--muted);font-size:10.5px;line-height:1.5}
-.rules{display:flex;align-items:center;gap:9px;margin-top:16px;color:var(--ink2);font-size:11px;line-height:1.6}
-.rules i{width:7px;height:7px;border-radius:50%;background:#3b745b;box-shadow:0 0 0 4px rgba(59,116,91,.1);flex:none}
-.preview{height:418px;padding:22px 23px 19px;background:var(--machine);color:var(--machine-ink);box-shadow:0 18px 42px rgba(24,33,29,.16);position:relative;overflow:hidden}
-.preview:after{content:"";position:absolute;right:-70px;top:-110px;width:260px;height:260px;border:1px solid rgba(228,233,226,.07);border-radius:50%;box-shadow:0 0 0 38px rgba(228,233,226,.022),0 0 0 78px rgba(228,233,226,.015)}
-.preview-head{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--machine-muted)}
-.live{display:inline-flex;align-items:center;gap:6px;color:#c3d4c8}
-.live:before{content:"";width:6px;height:6px;border-radius:50%;background:#7fbf9a}
-.metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;padding-bottom:18px;border-bottom:1px solid #39463f}
-.metric{padding-left:13px;border-left:1px solid #39463f}
-.metric:first-child{padding-left:0;border-left:0}
-.metric-value{font-family:var(--serif);font-size:32px;font-weight:600;line-height:1}
-.metric-label{margin-top:6px;color:var(--machine-muted);font-size:10px;letter-spacing:.08em}
-.focus{position:relative;z-index:1;display:flex;justify-content:space-between;margin:17px 0 10px;font-family:var(--mono);font-size:9px;letter-spacing:.11em;color:var(--signal-soft)}
-.task{position:relative;z-index:1;margin-top:9px;padding:12px 13px 11px;border-left:2px solid var(--signal);background:var(--machine2)}
-.task-title{font-size:14px;font-weight:500;letter-spacing:.01em}
-.task-meta{display:flex;justify-content:space-between;margin-top:7px;color:var(--machine-muted);font-family:var(--mono);font-size:9.5px}
-.task-meta b{color:var(--signal-soft);font-weight:500}
-.preview-foot{position:absolute;z-index:1;left:23px;right:23px;bottom:17px;display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid #39463f;color:var(--machine-muted);font-family:var(--mono);font-size:8.8px;letter-spacing:.04em}
-.footer{position:absolute;z-index:1;left:48px;right:48px;bottom:24px;display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--muted)}
-.footer strong{color:var(--ink2);font-weight:500}
-.privacy{display:inline-flex;align-items:center;gap:7px}
-.privacy:before{content:"";width:6px;height:6px;border-radius:50%;background:#3b745b}
+html,body{margin:0;padding:0;overflow:visible}
+body{background:var(--paper);color:var(--ink);font-family:var(--mono)}
+.card{position:relative;padding:32px 48px 28px;background-color:var(--paper);background-image:linear-gradient(to bottom,transparent 29px,var(--line) 30px);background-size:100% 30px}
+.card:before{content:"";position:absolute;left:20px;top:0;bottom:0;width:1px;background:rgba(192,74,58,.3)}
+.header{display:flex;align-items:baseline;gap:10px;height:25px;font-size:12px}
+.header .hash{color:var(--orange);font-weight:700}.header h1{margin:0;font-size:15px}.header .version{margin-left:auto;color:var(--muted);font-size:10px}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 510px;gap:46px;margin-top:25px}
+.story{padding-top:4px}.pixel-logo{display:block;width:470px;max-width:100%;height:auto;fill:currentColor}
+.lead{max-width:33ch;margin:17px 0 0;font-size:19px;line-height:1.65;font-weight:500}.lead span{color:var(--blue)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);margin-top:28px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.step{padding:13px 12px 12px 0;border-right:1px solid var(--line)}.step:not(:first-child){padding-left:12px}.step:last-child{border-right:0}.step-no{color:var(--blue);font-size:9px}.step-title{margin-top:5px;font-size:17px;font-weight:700}.step-desc{margin-top:5px;color:var(--muted);font-size:10px;line-height:1.65}
+.rules{display:flex;align-items:flex-start;gap:9px;margin-top:22px;color:var(--ink2);font-size:10px;line-height:1.8}.rules i{width:7px;height:7px;margin-top:5px;background:var(--green);flex:none}
+.terminal{height:420px;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--card);box-shadow:4px 4px 0 rgba(43,36,24,.08)}
+.term-bar{display:flex;align-items:center;height:36px;padding:0 14px;border-bottom:1px solid var(--line);background:#f0eadc}.dots{display:flex;gap:7px}.dots i{width:10px;height:10px;border-radius:50%}.dots i:nth-child(1){background:#ec6a5e}.dots i:nth-child(2){background:#f4bf4f}.dots i:nth-child(3){background:#61c554}.term-title{margin-left:13px;color:var(--muted);font-size:9px}.local{margin-left:auto;color:var(--green);font-size:9px}
+.term-body{padding:17px 19px;font-size:11px}.command{font-size:12px;font-weight:700}.prompt{color:var(--green)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px;padding-bottom:15px;border-bottom:1px solid var(--line)}.metric{padding-left:13px;border-left:1px solid var(--line)}.metric:first-child{padding-left:0;border-left:0}.metric-value{font-size:24px;font-weight:700;line-height:1.2}.metric-label{margin-top:3px;color:var(--muted);font-size:9px}
+.focus{display:flex;justify-content:space-between;margin:15px 0 9px;color:var(--orange);font-size:9px}.task{padding:10px 11px;border-left:2px solid var(--orange);background:#f5efe3}.task + .task{margin-top:9px}.task-title{font-size:11px;font-weight:700}.task-meta{display:flex;justify-content:space-between;margin-top:5px;color:var(--muted);font-size:9px}.task-meta strong{color:var(--orange)}
+.term-foot{display:flex;justify-content:space-between;margin-top:15px;padding-top:11px;border-top:1px dashed var(--line);color:var(--muted);font-size:8px}
+.footer{position:absolute;left:48px;right:48px;bottom:23px;display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--ink);color:var(--muted);font-size:9px}.footer strong{color:var(--ink2);font-weight:500}.privacy:before{content:"";display:inline-block;width:6px;height:6px;margin-right:7px;background:var(--green)}
 </style>
 </head>
-<body>
-<main class="card" aria-label="客户承诺管理工作台项目介绍卡片">
-  <header class="header">
-    <div class="brand">
-      <div class="seal">承</div>
-      <div class="brand-copy"><b>ASTRIBOT · SALES OPERATIONS</b>CUSTOMER COMMITMENT LEDGER</div>
-    </div>
-    <div class="header-badge">INTERACTIVE WORKBENCH · V1.0</div>
-  </header>
+<body style="width:1280px;height:640px;">
+<main class="card" data-canvas-root style="width:1280px;height:640px;" aria-label="销售助手-客户管理系统项目介绍卡片">
+  <header class="header"><span class="hash">#</span><h1>销售助手-客户管理系统</h1><span class="version">PUBLIC DEMO · V2.0.0</span></header>
   <div class="main">
-    <section class="story">
-      <div class="kicker">FROM CONVERSATIONS TO ACCOUNTABLE ACTIONS</div>
-      <h1><span>客户承诺管理</span><span>工作台</span></h1>
-      <p class="subtitle">把邮件与会议里的承诺，变成可追踪、可提醒、可复盘的行动。每一条都有期限、责任边界与出处原话。</p>
-      <div class="steps">
-        <div class="step"><div class="step-no">01 / CAPTURE</div><div class="step-title">捕捉</div><div class="step-desc">邮件与会议<br>先落成数据行</div></div>
-        <div class="step"><div class="step-no">02 / DISTILL</div><div class="step-title">提炼</div><div class="step-desc">承诺带期限<br>承诺方与出处</div></div>
-        <div class="step"><div class="step-no">03 / TRACK</div><div class="step-title">追踪</div><div class="step-desc">每天聚焦<br>最要紧的事项</div></div>
-        <div class="step"><div class="step-no">04 / REVIEW</div><div class="step-title">复盘</div><div class="step-desc">每周看见<br>兑现与积压</div></div>
+    <section class="story" data-layer-id="project-story">
+      <svg class="pixel-logo" viewBox="0 0 400 56" role="img" aria-label="SALES OPS" shape-rendering="crispEdges"><rect x="8" y="0" width="7" height="7"/><rect x="16" y="0" width="7" height="7"/><rect x="24" y="0" width="7" height="7"/><rect x="32" y="0" width="7" height="7"/><rect x="0" y="8" width="7" height="7"/><rect x="0" y="16" width="7" height="7"/><rect x="8" y="24" width="7" height="7"/><rect x="16" y="24" width="7" height="7"/><rect x="24" y="24" width="7" height="7"/><rect x="32" y="32" width="7" height="7"/><rect x="32" y="40" width="7" height="7"/><rect x="0" y="48" width="7" height="7"/><rect x="8" y="48" width="7" height="7"/><rect x="16" y="48" width="7" height="7"/><rect x="24" y="48" width="7" height="7"/><rect x="56" y="0" width="7" height="7"/><rect x="64" y="0" width="7" height="7"/><rect x="72" y="0" width="7" height="7"/><rect x="48" y="8" width="7" height="7"/><rect x="80" y="8" width="7" height="7"/><rect x="48" y="16" width="7" height="7"/><rect x="80" y="16" width="7" height="7"/><rect x="48" y="24" width="7" height="7"/><rect x="56" y="24" width="7" height="7"/><rect x="64" y="24" width="7" height="7"/><rect x="72" y="24" width="7" height="7"/><rect x="80" y="24" width="7" height="7"/><rect x="48" y="32" width="7" height="7"/><rect x="80" y="32" width="7" height="7"/><rect x="48" y="40" width="7" height="7"/><rect x="80" y="40" width="7" height="7"/><rect x="48" y="48" width="7" height="7"/><rect x="80" y="48" width="7" height="7"/><rect x="96" y="0" width="7" height="7"/><rect x="96" y="8" width="7" height="7"/><rect x="96" y="16" width="7" height="7"/><rect x="96" y="24" width="7" height="7"/><rect x="96" y="32" width="7" height="7"/><rect x="96" y="40" width="7" height="7"/><rect x="96" y="48" width="7" height="7"/><rect x="104" y="48" width="7" height="7"/><rect x="112" y="48" width="7" height="7"/><rect x="120" y="48" width="7" height="7"/><rect x="128" y="48" width="7" height="7"/><rect x="144" y="0" width="7" height="7"/><rect x="152" y="0" width="7" height="7"/><rect x="160" y="0" width="7" height="7"/><rect x="168" y="0" width="7" height="7"/><rect x="176" y="0" width="7" height="7"/><rect x="144" y="8" width="7" height="7"/><rect x="144" y="16" width="7" height="7"/><rect x="144" y="24" width="7" height="7"/><rect x="152" y="24" width="7" height="7"/><rect x="160" y="24" width="7" height="7"/><rect x="168" y="24" width="7" height="7"/><rect x="144" y="32" width="7" height="7"/><rect x="144" y="40" width="7" height="7"/><rect x="144" y="48" width="7" height="7"/><rect x="152" y="48" width="7" height="7"/><rect x="160" y="48" width="7" height="7"/><rect x="168" y="48" width="7" height="7"/><rect x="176" y="48" width="7" height="7"/><rect x="200" y="0" width="7" height="7"/><rect x="208" y="0" width="7" height="7"/><rect x="216" y="0" width="7" height="7"/><rect x="224" y="0" width="7" height="7"/><rect x="192" y="8" width="7" height="7"/><rect x="192" y="16" width="7" height="7"/><rect x="200" y="24" width="7" height="7"/><rect x="208" y="24" width="7" height="7"/><rect x="216" y="24" width="7" height="7"/><rect x="224" y="32" width="7" height="7"/><rect x="224" y="40" width="7" height="7"/><rect x="192" y="48" width="7" height="7"/><rect x="200" y="48" width="7" height="7"/><rect x="208" y="48" width="7" height="7"/><rect x="216" y="48" width="7" height="7"/><rect x="272" y="0" width="7" height="7"/><rect x="280" y="0" width="7" height="7"/><rect x="288" y="0" width="7" height="7"/><rect x="264" y="8" width="7" height="7"/><rect x="296" y="8" width="7" height="7"/><rect x="264" y="16" width="7" height="7"/><rect x="296" y="16" width="7" height="7"/><rect x="264" y="24" width="7" height="7"/><rect x="296" y="24" width="7" height="7"/><rect x="264" y="32" width="7" height="7"/><rect x="296" y="32" width="7" height="7"/><rect x="264" y="40" width="7" height="7"/><rect x="296" y="40" width="7" height="7"/><rect x="272" y="48" width="7" height="7"/><rect x="280" y="48" width="7" height="7"/><rect x="288" y="48" width="7" height="7"/><rect x="312" y="0" width="7" height="7"/><rect x="320" y="0" width="7" height="7"/><rect x="328" y="0" width="7" height="7"/><rect x="336" y="0" width="7" height="7"/><rect x="312" y="8" width="7" height="7"/><rect x="344" y="8" width="7" height="7"/><rect x="312" y="16" width="7" height="7"/><rect x="344" y="16" width="7" height="7"/><rect x="312" y="24" width="7" height="7"/><rect x="320" y="24" width="7" height="7"/><rect x="328" y="24" width="7" height="7"/><rect x="336" y="24" width="7" height="7"/><rect x="312" y="32" width="7" height="7"/><rect x="312" y="40" width="7" height="7"/><rect x="312" y="48" width="7" height="7"/><rect x="368" y="0" width="7" height="7"/><rect x="376" y="0" width="7" height="7"/><rect x="384" y="0" width="7" height="7"/><rect x="392" y="0" width="7" height="7"/><rect x="360" y="8" width="7" height="7"/><rect x="360" y="16" width="7" height="7"/><rect x="368" y="24" width="7" height="7"/><rect x="376" y="24" width="7" height="7"/><rect x="384" y="24" width="7" height="7"/><rect x="392" y="32" width="7" height="7"/><rect x="392" y="40" width="7" height="7"/><rect x="360" y="48" width="7" height="7"/><rect x="368" y="48" width="7" height="7"/><rect x="376" y="48" width="7" height="7"/><rect x="384" y="48" width="7" height="7"/></svg>
+      <p class="lead">把客户、沟通、方案和下一步，放进同一条销售流水线<span>~</span></p>
+      <div class="flow">
+        <div class="step"><div class="step-no">01 / CAPTURE</div><div class="step-title">捕捉</div><div class="step-desc">邮件与会议<br>先形成数据行</div></div>
+        <div class="step"><div class="step-no">02 / ORGANIZE</div><div class="step-title">归档</div><div class="step-desc">统一客户身份<br>还原最近触点</div></div>
+        <div class="step"><div class="step-no">03 / FOLLOW</div><div class="step-title">跟进</div><div class="step-desc">明确下一步<br>保留期限与出处</div></div>
+        <div class="step"><div class="step-no">04 / REVIEW</div><div class="step-title">复盘</div><div class="step-desc">每周检查推进<br>逾期与素材积压</div></div>
       </div>
       <div class="rules"><i></i><span>机器只写机器字段 · 待裁决必须人工确认 · 失败即停，重试不超过 2 次</span></div>
     </section>
-    <section class="preview" aria-label="工作台数据快照示意">
-      <div class="preview-head"><span>COMMITMENT LEDGER / SNAPSHOT</span><span class="live">STATIC DEMO</span></div>
-      <div class="metrics">
-        <div class="metric"><div class="metric-value">6</div><div class="metric-label">客户</div></div>
-        <div class="metric"><div class="metric-value">8</div><div class="metric-label">承诺</div></div>
-        <div class="metric"><div class="metric-value">47</div><div class="metric-label">会议</div></div>
-        <div class="metric"><div class="metric-value">17</div><div class="metric-label">触点</div></div>
+    <section class="terminal" data-layer-id="terminal-preview" aria-label="工作台数据快照示意">
+      <div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term-title">sales-assistant — zsh — 96×24</span><span class="local">● LOCAL</span></div>
+      <div class="term-body">
+        <div class="command"><span class="prompt">sales:~$</span> today</div>
+        <div class="metrics">
+          <div class="metric"><div class="metric-value">06</div><div class="metric-label">客户档案</div></div>
+          <div class="metric"><div class="metric-value">08</div><div class="metric-label">跟进事项</div></div>
+          <div class="metric"><div class="metric-value">47</div><div class="metric-label">会议素材</div></div>
+          <div class="metric"><div class="metric-value">17</div><div class="metric-label">沟通记录</div></div>
+        </div>
+        <div class="focus"><span>今天先处理 / TOP PRIORITIES</span><span>2026-11-18</span></div>
+        <div class="task"><div class="task-title">客户C / 合同违约金条款更新</div><div class="task-meta"><span>真实约定 · 邮件来源</span><strong>逾期 76 天</strong></div></div>
+        <div class="task"><div class="task-title">客户A / 海外批次到货跟踪</div><div class="task-meta"><span>真实约定 · 邮件来源</span><strong>逾期 20 天</strong></div></div>
+        <div class="term-foot"><span>2 条逾期 · 3 条无期限</span><span>静态演示 · 不发送消息</span></div>
       </div>
-      <div class="focus"><span>今日焦点 / TOP PRIORITIES</span><span>2026-11-18</span></div>
-      <div class="task"><div class="task-title">合同违约金条款更新</div><div class="task-meta"><span>逾期 <b>76 天</b></span><span>今日分 243</span></div></div>
-      <div class="task"><div class="task-title">海外批次到货跟踪</div><div class="task-meta"><span>逾期 <b>20 天</b></span><span>今日分 75</span></div></div>
-      <div class="preview-foot"><span>08:30 聚焦 TOP 2</span><span>静态演示 · 不发送消息</span></div>
     </section>
   </div>
-  <footer class="footer">
-    <strong>单文件 HTML　/　本地字体　/　无需构建　/　可离线打开</strong>
-    <span class="privacy">假名演示数据 · 2026-11-18 快照</span>
-  </footer>
+  <footer class="footer"><strong>原生 JavaScript　/　本地字体　/　无需构建　/　可离线打开</strong><span class="privacy">虚构演示数据 · 2026-11-18</span></footer>
 </main>
 </body>
 </html>
